@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="br.com.oficinas.gestaooficinas.fx.controller.RegisterController"
+      spacing="8" alignment="CENTER" prefWidth="380" prefHeight="320" style="-fx-padding:16;">
+  <Label text="Criar conta" style="-fx-font-size:18;" />
+  <TextField fx:id="nomeField" promptText="Nome"/>
+  <TextField fx:id="emailField" promptText="E-mail"/>
+  <PasswordField fx:id="senhaField" promptText="Senha (mín. 8)"/>
+  <ComboBox fx:id="roleBox" />
+  <Button text="Criar" onAction="#onCreate" maxWidth="Infinity"/>
+  <Button text="Voltar ao login" onAction="#onBackToLogin" maxWidth="Infinity"/>
+  <Label fx:id="msgLabel" />
+</VBox>

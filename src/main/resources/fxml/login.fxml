@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="br.com.oficinas.gestaooficinas.fx.controller.LoginController"
+      spacing="8" alignment="CENTER" prefWidth="360" prefHeight="240" style="-fx-padding:16;">
+  <Label text="Login" style="-fx-font-size:18;" />
+  <TextField fx:id="emailField" promptText="E-mail" />
+  <PasswordField fx:id="senhaField" promptText="Senha" />
+  <Button text="Entrar" onAction="#onLogin" maxWidth="Infinity"/>
+  <Hyperlink text="Criar conta" onAction="#onGoToRegister" />
+  <Label fx:id="errorLabel" textFill="red" />
+</VBox>

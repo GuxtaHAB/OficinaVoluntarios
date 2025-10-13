@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.oficinas.gestaooficinas.fx.controller.VoluntarioController">
+    <top>
+        <ToolBar>
+            <Button text="Sair" onAction="#onLogout"/>
+            <Label text=" | "/>
+            <Label fx:id="headerLabel"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <TabPane>
+            <tabs>
+
+                <!-- PERFIL -->
+                <Tab text="Meu Perfil" closable="false">
+                    <VBox spacing="8">
+                        <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                        <GridPane hgap="8" vgap="8">
+                            <Label text="Nome:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <TextField fx:id="nomeField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                            <Label text="E-mail:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <TextField fx:id="emailField" GridPane.rowIndex="1" GridPane.columnIndex="1" editable="false"/>
+
+                            <Label text="Idade:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <TextField fx:id="idadeField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                            <Label text="Especialidade:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="especialidadeBox" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                            <Button text="Salvar Perfil" onAction="#onSalvarPerfil"
+                                    GridPane.rowIndex="4" GridPane.columnIndex="1" maxWidth="Infinity"/>
+                        </GridPane>
+
+                        <Label fx:id="perfilMsg"/>
+                    </VBox>
+                </Tab>
+
+                <!-- MINHA OFICINA -->
+                <Tab text="Minha Oficina" closable="false">
+                    <VBox spacing="8">
+                        <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                         <Label fx:id="afiliadoLabel" style="-fx-font-weight: bold;"/>
+
+                        <Label text="Escolha uma oficina para se afiliar ou clique em 'Desafiliar'."/>
+                        <TableView fx:id="oficinasTable" prefHeight="200">
+                            <columns>
+                                <TableColumn fx:id="colOfId" text="ID" prefWidth="80"/>
+                                <TableColumn fx:id="colOfNome" text="Nome" prefWidth="220"/>
+                                <TableColumn fx:id="colOfCidade" text="Cidade/UF" prefWidth="180"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="8">
+                            <TextField fx:id="oficinaIdField" promptText="ID da oficina"/>
+                            <Button text="Afiliar" onAction="#onAfiliar"/>
+                            <Button text="Desafiliar" onAction="#onDesafiliar"/>
+                        </HBox>
+
+                        <Label fx:id="afiliacaoMsg"/>
+                    </VBox>
+                </Tab>
+
+                <!-- DISPONIBILIDADE -->
+                <Tab text="Disponibilidade" closable="false">
+                    <VBox spacing="8">
+                        <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                        <TableView fx:id="dispTable" prefHeight="220">
+                            <columns>
+                                <TableColumn fx:id="colDia" text="Dia" prefWidth="120"/>
+                                <TableColumn fx:id="colIni" text="Início" prefWidth="120"/>
+                                <TableColumn fx:id="colFim" text="Fim" prefWidth="120"/>
+                                <TableColumn fx:id="colDispId" text="ID" prefWidth="80"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="8">
+                            <TextField fx:id="diaField" promptText="1=SEG ... 7=DOM"/>
+                            <TextField fx:id="iniField" promptText="HH:MM"/>
+                            <TextField fx:id="fimField" promptText="HH:MM"/>
+                            <Button text="Adicionar" onAction="#onAddDisp"/> <!--<Button text="Adicionar p/ todos os dias" onAction="#onAddDispSemana"/>-->
+                        </HBox>
+
+                        <!--<HBox spacing="8">
+                            <TextField fx:id="dispIdRemoverField" promptText="ID disp. p/ remover"/>
+                            <Button text="Remover" onAction="#onRemoverDisp"/>
+                        </HBox>-->
+                        <HBox spacing="8">
+                            <CheckBox fx:id="selectAllDisp" text="Selecionar todas" onAction="#onToggleSelectAllDisp"/>
+                            <Button text="Remover selecionadas" onAction="#onRemoverSelecionadas"/>
+                        </HBox>
+                        <Label fx:id="dispMsg"/>
+                    </VBox>
+                </Tab>
+
+                <!-- MEUS AGENDAMENTOS -->
+                <Tab text="Meus Agendamentos" closable="false">
+                    <VBox spacing="8">
+                        <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                        <TableView fx:id="agTable" prefHeight="260">
+                            <columns>
+                                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                                <TableColumn fx:id="colData" text="Data/Hora" prefWidth="160"/>
+                                <TableColumn fx:id="colItem" text="Item" prefWidth="260"/>
+                                <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="8">
+                            <TextField fx:id="agIdField" promptText="ID do agendamento"/>
+                            <ComboBox fx:id="statusBox"/>
+                            <Button text="Atualizar" onAction="#onAtualizarStatus"/>
+                        </HBox>
+
+                        <Label fx:id="agMsg"/>
+                    </VBox>
+                </Tab>
+
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

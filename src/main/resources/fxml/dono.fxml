@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.oficinas.gestaooficinas.fx.controller.DonoController">
+    <top>
+        <ToolBar>
+            <Button text="Sair" onAction="#onLogout"/>
+            <Label text=" | "/>
+            <Label fx:id="headerLabel"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <TabPane>
+            <tabs>
+                <!-- Aba: Minha Oficina -->
+                <Tab text="Minha Oficina" closable="false">
+                    <ScrollPane fitToWidth="true">
+                        <content>
+                            <VBox spacing="8">
+                            <padding>
+                              <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                                <TextField fx:id="nomeField" promptText="Nome da oficina"/>
+                                <TextField fx:id="enderecoField" promptText="Endereço"/>
+                                <TextField fx:id="cidadeField" promptText="Cidade"/>
+                                <TextField fx:id="ufField" promptText="UF"/>
+                                <TextField fx:id="telefoneField" promptText="Telefone"/>
+                                <TextField fx:id="capacidadeField" promptText="Capacidade por hora (opcional)"/>
+                                <Button text="Salvar" onAction="#onSalvarOficina" maxWidth="Infinity"/>
+                                <Label fx:id="statusLabel"/>
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                </Tab>
+
+                <!-- Aba: Triagem/Atribuição -->
+                <Tab text="Triagem/Atribuição" closable="false">
+                    <VBox spacing="8">
+                    <padding>
+                      <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                        <Label text="Agendamentos da minha oficina"/>
+                        <TableView fx:id="agTable" prefHeight="220">
+                            <columns>
+                                <TableColumn fx:id="colAgId" text="ID" prefWidth="60"/>
+                                <TableColumn fx:id="colAgData" text="Data/Hora" prefWidth="160"/>
+                                <TableColumn fx:id="colAgItem" text="Item" prefWidth="220"/>
+                                <TableColumn fx:id="colAgStatus" text="Status" prefWidth="120"/>
+                                <TableColumn fx:id="colAgVol" text="Voluntário" prefWidth="160"/>
+                            </columns>
+                        </TableView>
+
+                        <Label text="Voluntários afiliados"/>
+                        <TableView fx:id="volTable" prefHeight="160">
+                            <columns>
+                                <TableColumn fx:id="colVolId" text="ID" prefWidth="60"/>
+                                <TableColumn fx:id="colVolNome" text="Nome" prefWidth="200"/>
+                                <TableColumn fx:id="colVolEsp" text="Especialidade" prefWidth="140"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="8">
+                            <TextField fx:id="agIdField" promptText="ID Agendamento"/>
+                            <TextField fx:id="volIdField" promptText="ID Voluntário"/>
+                            <Button text="Atribuir" onAction="#onAtribuir"/>
+                        </HBox>
+                        <Label fx:id="triagemMsg"/>
+                    </VBox>
+                </Tab>
+                <Tab text="Agenda" closable="false">
+                  <VBox spacing="8">
+                    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                    <HBox spacing="8">
+                      <DatePicker fx:id="dpInicio" promptText="Início"/>
+                      <DatePicker fx:id="dpFim" promptText="Fim"/>
+                      <Button text="Filtrar" onAction="#onFiltrarAgenda"/>
+                      <Button text="Limpar" onAction="#onLimparAgenda"/>
+                    </HBox>
+
+                    <TableView fx:id="agTableAgenda" prefHeight="260">
+                      <columns>
+                        <TableColumn fx:id="colAgAId" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="colAgAData" text="Data/Hora" prefWidth="160"/>
+                        <TableColumn fx:id="colAgAItem" text="Item" prefWidth="240"/>
+                        <TableColumn fx:id="colAgAStatus" text="Status" prefWidth="120"/>
+                        <TableColumn fx:id="colAgAVol" text="Voluntário" prefWidth="160"/>
+                      </columns>
+                    </TableView>
+                    <Label fx:id="agendaMsg"/>
+                  </VBox>
+                </Tab>
+                <Tab text="Relatórios" closable="false">
+                  <VBox spacing="8">
+                    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                    <HBox spacing="8">
+                      <DatePicker fx:id="rpInicio" promptText="Início"/>
+                      <DatePicker fx:id="rpFim" promptText="Fim"/>
+                      <Button text="Gerar" onAction="#onGerarRelatorio"/>
+                      <Button text="Exportar CSV" onAction="#onExportarCsv"/>
+                    </HBox>
+
+                    <TitledPane text="Resumo" expanded="true">
+                      <VBox spacing="6" style="-fx-padding: 8;">
+                        <Label fx:id="lblTotalAg"/>
+                        <Label fx:id="lblPorStatus"/>
+                        <Label fx:id="lblPorCategoria"/>
+                        <Label fx:id="lblImpacto"/>
+                      </VBox>
+                    </TitledPane>
+                    <Label fx:id="relMsg"/>
+                  </VBox>
+                </Tab>
+                <Tab text="Horários da Oficina" closable="false">
+                  <VBox spacing="8">
+                    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                    <TableView fx:id="horariosTable" prefHeight="220">
+                      <columns>
+                        <TableColumn fx:id="colHId" text="ID" prefWidth="80"/>
+                        <TableColumn fx:id="colHDia" text="Dia" prefWidth="120"/>
+                        <TableColumn fx:id="colHIni" text="Início" prefWidth="120"/>
+                        <TableColumn fx:id="colHFim" text="Fim" prefWidth="120"/>
+                      </columns>
+                    </TableView>
+
+                    <HBox spacing="8">
+                      <TextField fx:id="diaOfField" promptText="1=SEG ... 7=DOM"/>
+                      <TextField fx:id="iniOfField" promptText="HH:MM"/>
+                      <TextField fx:id="fimOfField" promptText="HH:MM"/>
+                      <Button text="Adicionar/Atualizar" onAction="#onAddHorario"/>
+                    </HBox>
+
+                    <!--<HBox spacing="8">
+                      <TextField fx:id="remDiaField" promptText="Dia p/ desativar (1..7)"/>
+                      <Button text="Desativar" onAction="#onDesativarHorario"/>
+                    </HBox>-->
+
+                    <HBox spacing="8">
+                      <CheckBox fx:id="selectAllHor" text="Selecionar todos" onAction="#onToggleSelectAllHor"/>
+                      <Button text="Remover selecionados" onAction="#onDesativarSelecionados"/>
+                    </HBox>
+
+                    <Label fx:id="horMsg"/>
+                  </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

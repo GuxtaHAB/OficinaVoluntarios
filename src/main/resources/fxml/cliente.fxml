@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.oficinas.gestaooficinas.fx.controller.ClienteController">
+    <top>
+        <ToolBar>
+            <Button text="Sair" onAction="#onLogout"/>
+            <Label text=" | "/>
+            <Label fx:id="headerLabel"/>
+        </ToolBar>
+    </top>
+    <center>
+        <TabPane fx:id="tabPane">
+            <tabs>
+                <Tab text="Meus Itens" closable="false">
+                    <VBox spacing="8">
+                    <padding>
+                      <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                        <TableView fx:id="itensTable" prefHeight="240">
+                            <columns>
+                                <TableColumn text="ID" fx:id="colItemId" prefWidth="60"/>
+                                <TableColumn text="Categoria" fx:id="colItemCat" prefWidth="120"/>
+                                <TableColumn text="Descrição" fx:id="colItemDesc" prefWidth="320"/>
+                            </columns>
+                        </TableView>
+                        <TitledPane text="Novo Item" expanded="true">
+                            <GridPane hgap="8" vgap="8" style="-fx-padding: 10;">
+                                <Label text="Categoria:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="categoriaBox" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                <Label text="Descrição:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <TextField fx:id="descricaoField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                <Button text="Criar" onAction="#onCriarItem"
+                                        GridPane.rowIndex="2" GridPane.columnIndex="1" maxWidth="Infinity"/>
+                            </GridPane>
+                        </TitledPane>
+                    </VBox>
+                </Tab>
+                <Tab text="Agendar" closable="false">
+                    <VBox spacing="8">
+                    <padding>
+                      <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                        <Label text="Selecione o Item e a Oficina, depois informe data/hora"/>
+                        <HBox spacing="8">
+                            <VBox spacing="4">
+                                <Label text="Itens"/>
+                                <TableView fx:id="itensAgendarTable" prefWidth="480" prefHeight="160">
+                                    <columns>
+                                        <TableColumn text="ID" fx:id="colAgiItemId" prefWidth="60"/>
+                                        <TableColumn text="Categoria" fx:id="colAgiItemCat" prefWidth="120"/>
+                                        <TableColumn text="Descrição" fx:id="colAgiItemDesc" prefWidth="300"/>
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                            <VBox spacing="4">
+                                <Label text="Oficinas"/>
+                                <TableView fx:id="oficinasTable" prefWidth="420" prefHeight="160">
+                                    <columns>
+                                        <TableColumn text="ID" fx:id="colOfId" prefWidth="60"/>
+                                        <TableColumn text="Nome" fx:id="colOfNome" prefWidth="180"/>
+                                        <TableColumn text="Cidade/UF" fx:id="colOfCidade" prefWidth="160"/>
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </HBox>
+                        <HBox spacing="8">
+                            <TextField fx:id="dataField" promptText="AAAA-MM-DD"/>
+                            <TextField fx:id="horaField" promptText="HH:MM"/>
+                            <TextField fx:id="obsField" promptText="Observações (opcional)" prefWidth="300"/>
+                            <Button text="Agendar" onAction="#onAgendar"/>
+                        </HBox>
+                        <Label fx:id="agendarMsg"/>
+                    </VBox>
+                </Tab>
+                <Tab text="Meus Agendamentos" closable="false">
+                    <VBox spacing="8">
+                    <padding>
+                      <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                        <TableView fx:id="agendamentosTable" prefHeight="260">
+                            <columns>
+                                <TableColumn text="ID" fx:id="colAgId" prefWidth="60"/>
+                                <TableColumn text="Data/Hora" fx:id="colAgData" prefWidth="160"/>
+                                <TableColumn text="Oficina" fx:id="colAgOficina" prefWidth="200"/>
+                                <TableColumn text="Status" fx:id="colAgStatus" prefWidth="120"/>
+                                <TableColumn text="Voluntário" fx:id="colAgVol" prefWidth="160"/>
+                            </columns>
+                        </TableView>
+                        <HBox spacing="8">
+                            <TextField fx:id="cancelIdField" promptText="ID do agendamento"/>
+                            <Button text="Cancelar" onAction="#onCancelar"/>
+                        </HBox>
+                        <Label fx:id="cancelMsg"/>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
