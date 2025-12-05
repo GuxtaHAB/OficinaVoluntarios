@@ -3,6 +3,7 @@ package br.com.oficinas.gestaooficinas.fx;
 import br.com.oficinas.gestaooficinas.GestaoOficinasApplication;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,9 +21,19 @@ public class FxLauncher extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            var router = context.getBean(SceneRouter.class);
-            router.attach(stage);  // ✅ associa o Stage principal ao router
-            router.go("/fxml/login.fxml", "Gestão de Oficinas - Login");
+            FxViewLoader loader = context.getBean(FxViewLoader.class);
+            SceneRouter router  = context.getBean(SceneRouter.class);   // <- NOVO
+            router.attach(stage);                                       // <- NOVO
+
+            Scene scene = new Scene(loader.load("/fxml/login.fxml"));
+            stage.setTitle("Gestão de Oficinas - Login");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setWidth(1120);
+            stage.setHeight(780);
+            stage.setMinWidth(900);
+            stage.setMinHeight(600);
+            stage.show();
         } catch (Throwable t) {
             t.printStackTrace();
             throw t instanceof RuntimeException ? (RuntimeException) t : new RuntimeException(t);

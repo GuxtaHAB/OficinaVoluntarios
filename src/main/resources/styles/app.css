@@ -1,0 +1,128 @@
+/* ===== Paleta base ===== */
+:root {
+    /* (JavaFX não tem CSS variables, mas usamos lookups por classe) */
+}
+
+/* Cores padrão do Modena que podemos guiar via -fx-accent */
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Roboto", "Arial";
+    -fx-font-size: 13px;
+    -fx-accent: #2E7D32;          /* verde principal */
+    -fx-focus-color: #2E7D32;
+    -fx-faint-focus-color: rgba(46,125,50,0.2);
+}
+
+/* ===== Layout utilitários ===== */
+.card {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #FAFAFA);
+    -fx-padding: 16;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 12, 0.2, 0, 2);
+}
+
+.toolbar {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 8 12;
+    -fx-spacing: 8;
+    -fx-background-insets: 0 0 1 0;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.pill {
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #2E7D32;
+    -fx-padding: 2 8;
+    -fx-background-radius: 999;
+    -fx-font-size: 11px;
+}
+
+/* ===== Tipos de texto ===== */
+.h1 { -fx-font-size: 20px; -fx-font-weight: 700; }
+.h2 { -fx-font-size: 16px; -fx-font-weight: 700; }
+
+/* ===== Botões ===== */
+.button {
+    -fx-background-radius: 10;
+    -fx-padding: 8 14;
+}
+
+.primary-btn {
+    -fx-background-color: -fx-accent;
+    -fx-text-fill: white;
+}
+.primary-btn:hover { -fx-background-color: derive(-fx-accent, -10%); }
+.primary-btn:pressed { -fx-background-color: derive(-fx-accent, -20%); }
+
+.secondary-btn {
+    -fx-background-color: #E3F2FD;
+    -fx-text-fill: #0D47A1;
+}
+
+.danger-btn {
+    -fx-background-color: #D32F2F;
+    -fx-text-fill: white;
+}
+.danger-btn:hover { -fx-background-color: #B71C1C; }
+
+/* Botão “olho” compacto */
+.icon-btn {
+    -fx-background-color: transparent;
+    -fx-padding: 4 8;
+}
+.icon-btn:hover { -fx-background-color: rgba(0,0,0,0.06); -fx-background-radius: 6; }
+
+/* ===== Inputs ===== */
+.text-field, .password-field, .combo-box {
+    -fx-background-radius: 10;
+    -fx-padding: 8 10;
+}
+.text-field:focused, .password-field:focused, .combo-box:focused {
+    -fx-effect: dropshadow(gaussian, rgba(46,125,50,0.35), 12, 0.3, 0, 0);
+}
+
+/* Labels de feedback */
+.error-label    { -fx-text-fill: #D32F2F; }
+.success-label  { -fx-text-fill: #2E7D32; }
+
+/* ===== Tabs ===== */
+.tab-pane .tab-header-area {
+    -fx-background-color: transparent;
+}
+.tab-pane .tab {
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 6 12;
+}
+.tab-pane .tab:selected {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1 1 0 1;
+    -fx-background-insets: 0;
+}
+
+/* ===== TableView ===== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 8;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 12;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F5F5F5;
+    -fx-background-radius: 12 12 0 0;
+}
+.table-row-cell:filled:odd {
+    -fx-background-color: #FAFAFA;
+}
+.table-row-cell:selected {
+    -fx-background-color: rgba(46,125,50,0.15);
+}
+
+/* ===== Alerts (diálogos) ===== */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+}
+.dialog-pane > *.header-panel { -fx-background-color: transparent; }
+.dialog-pane .button { -fx-background-radius: 10; }

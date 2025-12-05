@@ -5,6 +5,8 @@ import br.com.oficinas.gestaooficinas.domain.Usuario;
 import br.com.oficinas.gestaooficinas.fx.SceneRouter;
 import br.com.oficinas.gestaooficinas.fx.UserSessionFx;
 import br.com.oficinas.gestaooficinas.service.AuthService;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -15,12 +17,15 @@ public class LoginController {
 
     @FXML private TextField emailField;
     @FXML private PasswordField senhaField;
-    @FXML private Label errorLabel;
-    @FXML private Button entrarButton; // opcional (para defaultButton no FXML)
+    @FXML private TextField senhaVisivelField;
+    @FXML private Button toggleSenhaBtn, entrarButton;
+    @FXML private Label errorLabel; 
 
     private final AuthService auth;
     private final UserSessionFx session;
     private final SceneRouter router;
+
+    private final StringProperty senhaModel = new SimpleStringProperty("");
 
     public LoginController(AuthService auth, UserSessionFx session, SceneRouter router) {
         this.auth = auth;
@@ -37,6 +42,19 @@ public class LoginController {
         if (entrarButton != null) {
             entrarButton.setDefaultButton(true);
         }
+
+        senhaField.textProperty().bindBidirectional(senhaModel);
+        senhaVisivelField.textProperty().bindBidirectional(senhaModel);
+    }
+
+    @FXML
+    private void toggleSenhaVisivel() {
+        boolean mostrar = !senhaVisivelField.isVisible();
+        senhaVisivelField.setVisible(mostrar);
+        senhaVisivelField.setManaged(mostrar);
+        senhaField.setVisible(!mostrar);
+        senhaField.setManaged(!mostrar);
+        toggleSenhaBtn.setText(mostrar ? "🙈" : "👁️");
     }
 
     @FXML

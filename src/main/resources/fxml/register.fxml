@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.collections.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="br.com.oficinas.gestaooficinas.fx.controller.RegisterController"
-      spacing="8" alignment="CENTER" prefWidth="380" prefHeight="380" style="-fx-padding:16;">
-  <Label text="Criar conta" style="-fx-font-size:18;" />
+      spacing="12" alignment="CENTER" prefWidth="400" prefHeight="420" styleClass="card">
+  <padding>
+    <Insets top="16" right="16" bottom="16" left="16"/>
+  </padding>
+
+  <Label text="Criar conta" styleClass="h1" />
   <TextField fx:id="nomeField"  promptText="Nome"/>
   <TextField fx:id="emailField" promptText="E-mail"/>
-  
-<HBox spacing="5" alignment="CENTER">
-  <PasswordField fx:id="senhaField" promptText="Senha (mín. 8)" HBox.hgrow="ALWAYS"/>
-  <TextField fx:id="senhaVisivelField" promptText="Senha (mín. 8)" visible="false" managed="false" HBox.hgrow="ALWAYS"/>
-  <Button fx:id="toggleSenhaBtn" text="👁️" onAction="#toggleSenhaVisivel" focusTraversable="false"/>
-</HBox>
 
-<HBox spacing="5" alignment="CENTER">
-  <PasswordField fx:id="confirmaSenhaField" promptText="Confirmar senha" HBox.hgrow="ALWAYS"/>
-  <TextField fx:id="confirmaSenhaVisivelField" promptText="Confirmar senha" visible="false" managed="false" HBox.hgrow="ALWAYS"/>
-  <Button fx:id="toggleConfirmaBtn" text="👁️" onAction="#toggleConfirmaVisivel" focusTraversable="false"/>
-</HBox>
+  <HBox spacing="5" alignment="CENTER">
+    <PasswordField fx:id="senhaField" promptText="Senha (mín. 8)" HBox.hgrow="ALWAYS"/>
+    <TextField fx:id="senhaVisivelField" promptText="Senha (mín. 8)" visible="false" managed="false" HBox.hgrow="ALWAYS"/>
+    <Button fx:id="toggleSenhaBtn" text="👁️" onAction="#toggleSenhaVisivel" focusTraversable="false" styleClass="icon-btn"/>
+  </HBox>
+
+  <HBox spacing="5" alignment="CENTER">
+    <PasswordField fx:id="confirmaSenhaField" promptText="Confirmar senha" HBox.hgrow="ALWAYS"/>
+    <TextField fx:id="confirmaSenhaVisivelField" promptText="Confirmar senha" visible="false" managed="false" HBox.hgrow="ALWAYS"/>
+    <Button fx:id="toggleConfirmaBtn" text="👁️" onAction="#toggleConfirmaVisivel" focusTraversable="false" styleClass="icon-btn"/>
+  </HBox>
 
   <ComboBox fx:id="roleBox" />
-  <Button text="Criar" onAction="#onCreate" maxWidth="Infinity"/>
-  <Button text="Voltar ao login" onAction="#onBackToLogin" maxWidth="Infinity"/>
+  <Button text="Criar" onAction="#onCreate" maxWidth="Infinity" styleClass="primary-btn"/>
+  <Button text="Voltar ao login" onAction="#onBackToLogin" maxWidth="Infinity" styleClass="secondary-btn"/>
   <Label fx:id="msgLabel" />
 </VBox>
