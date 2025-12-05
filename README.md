@@ -1,4 +1,4 @@
-istema de Gestão de Oficinas – README
+Sistema de Gestão de Oficinas – README
 
 Este projeto é uma aplicação completa para gestão de oficinas
 voluntárias, composta por um cliente JavaFX + Spring Boot (gestão de
